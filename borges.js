@@ -32,6 +32,7 @@ var grammar = {
     {"name": "MOD", "symbols": ["MOD$string$5"]},
     {"name": "MOD$string$6", "symbols": [{"literal":"p"}, {"literal":"e"}, {"literal":"r"}, {"literal":"o"}], "postprocess": function joiner(d) {return d.join('');}},
     {"name": "MOD", "symbols": ["MOD$string$6", "_", "SENTENCE"]},
+    {"name": "MOD", "symbols": ["OBJ"]},
     {"name": "OBJ$string$1", "symbols": [{"literal":"l"}, {"literal":"o"}, {"literal":" "}, {"literal":"q"}, {"literal":"u"}, {"literal":"e"}, {"literal":" "}, {"literal":"y"}, {"literal":"o"}, {"literal":" "}, {"literal":"s"}, {"literal":"i"}, {"literal":"e"}, {"literal":"n"}, {"literal":"t"}, {"literal":"o"}], "postprocess": function joiner(d) {return d.join('');}},
     {"name": "OBJ", "symbols": ["OBJ$string$1"]},
     {"name": "OBJ$string$2", "symbols": [{"literal":"a"}, {"literal":"l"}, {"literal":"b"}, {"literal":"a"}], "postprocess": function joiner(d) {return d.join('');}},
