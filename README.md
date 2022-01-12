@@ -22,27 +22,28 @@
 ```nearley-test -i "#fff" csscolor.js```
 
 > Por ejemplo
-> ```
-> nearleyc borges.ne -o borges.js 
+> ```nearleyc borges.ne -o borges.js```
 
-> nearley-test -i "el espejo es una fragancia." borges.js 
-> Parse results: 
-> [
->   [
->     [
->       [ 'el espejo' ],
->       [ ' ' ],
->       [ 'es' ],
->       [ ' ' ],
->       [ [ 'una fragancia' ] ]
->     ],
->     '.'
->   ]
-> ]
+> ```nearley-test -i "el espejo es una fragancia." borges.js```
 
-> nearley-unparse borges.js 
+```
+Parse results: 
+[
+  [
+    [
+      [ 'el espejo' ],
+      [ ' ' ],
+      [ 'es' ],
+      [ ' ' ],
+      [ [ 'una fragancia' ] ]
+    ],
+    '.'
+  ]
+]
+```
+
+> ```nearley-unparse borges.js``
 > el espejo no sabe lo que yo siento.
-> ```
 
 ### Usar CLI
 ```node color.js```
