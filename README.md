@@ -21,6 +21,12 @@
 ### Testear gramática
 ```nearley-test -i "#fff" csscolor.js```
 
+> Por ejemplo
+> ```
+> nearleyc borges.ne -o borges.js 
+> nearley-test -i "el espejo es una fragancia." borges.js 
+> ```
+
 ### Usar CLI
 ```node color.js```
 
