@@ -1,0 +1,23 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "funcion semiotica - lenguajes de programacion",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karen-pal/semiosis.git"
+  },
+  "author": "Karen Palacio",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/karen-pal/semiosis/issues"
+  },
+  "homepage": "https://github.com/karen-pal/semiosis#readme",
+  "dependencies": {
+    "nearley": "^2.20.1",
+    "readline-sync": "^1.4.10"
+  }
+}
