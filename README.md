@@ -13,7 +13,7 @@
 <a name="comandos"/>
 ## Comandos
 ### Compilar la gramática
-```nearleyc grammar.ne -o grammar.js```
+`nearleyc grammar.ne -o grammar.js`
 
 ### Generar producciones random
 ```nearley-unparse -s 3 grammar.js```
@@ -22,9 +22,10 @@
 ```nearley-test -i "#fff" csscolor.js```
 
 > Por ejemplo
-> ```nearleyc borges.ne -o borges.js```
 
-> ```nearley-test -i "el espejo es una fragancia." borges.js```
+```nearleyc borges.ne -o borges.js```
+
+```nearley-test -i "el espejo es una fragancia." borges.js```
 
 ```
 Parse results: 
@@ -42,7 +43,7 @@ Parse results:
 ]
 ```
 
-> ```nearley-unparse borges.js``
+> ```nearley-unparse borges.js```
 > el espejo no sabe lo que yo siento.
 
 ### Usar CLI
