@@ -1,17 +1,18 @@
 
+Lista:
 
 - Ambigüedad(cognición).
 - Sensibilidad(sensorial). 
 - Comunicación(lenguaje). 
 - Propósito(almica)
 
-##### Table of Contents  
+##### Contenidos  
 [Comandos](#comandos)
-[Headers](#headers)  
-[Emphasis](#emphasis)  
-...snip...    
+...bla...    
+
 <a name="comandos"/>
 ## Comandos
+
 ### Compilar la gramática
 `nearleyc grammar.ne -o grammar.js`
 
@@ -43,11 +44,9 @@ Parse results:
 ]
 ```
 
-> ```nearley-unparse borges.js```
+```nearley-unparse borges.js```
+
 > el espejo no sabe lo que yo siento.
 
 ### Usar CLI
 ```node color.js```
-
-<a name="headers"/>
-## Headers
