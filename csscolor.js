@@ -98,17 +98,17 @@ var grammar = {
             );
         }
         },
-    {"name": "csscolor", "symbols": [{"literal":"#"}, "hexdigit", "hexdigit", "hexdigit", "hexdigit", "hexdigit", "hexdigit"]},
-    {"name": "csscolor", "symbols": [{"literal":"#"}, "hexdigit", "hexdigit", "hexdigit"]},
+    {"name": "csscolor", "symbols": [{"literal":"#"}, "hexdigit", "hexdigit", "hexdigit", "hexdigit", "hexdigit", "hexdigit"], "postprocess": ([type,h1,h2,h3,h4,h5,h6]) => [{"type":"hex","data":h1+h2+h3+h4+h5+h6}]},
+    {"name": "csscolor", "symbols": [{"literal":"#"}, "hexdigit", "hexdigit", "hexdigit"], "postprocess": ([type,h1,h2,h3]) => [{"type":"hex", "data":h1+h2+h3}]},
     {"name": "csscolor$string$1", "symbols": [{"literal":"r"}, {"literal":"g"}, {"literal":"b"}], "postprocess": function joiner(d) {return d.join('');}},
-    {"name": "csscolor", "symbols": ["csscolor$string$1", "_", {"literal":"("}, "_", "colnum", "_", {"literal":","}, "_", "colnum", "_", {"literal":","}, "_", "colnum", "_", {"literal":")"}]},
+    {"name": "csscolor", "symbols": ["csscolor$string$1", "_", {"literal":"("}, "_", "colnum", "_", {"literal":","}, "_", "colnum", "_", {"literal":","}, "_", "colnum", "_", {"literal":")"}], "postprocess": ([type,ws1,par1,ws2,r,ws3,comma1,ws4,g,ws5,comma2,ws6,b,ws7,par2]) => [{"type":"rgb","r":r,"g":g,"b":b}]},
     {"name": "csscolor$string$2", "symbols": [{"literal":"h"}, {"literal":"s"}, {"literal":"l"}], "postprocess": function joiner(d) {return d.join('');}},
     {"name": "csscolor", "symbols": ["csscolor$string$2", "_", {"literal":"("}, "_", "colnum", "_", {"literal":","}, "_", "colnum", "_", {"literal":","}, "_", "colnum", "_", {"literal":")"}]},
     {"name": "csscolor$string$3", "symbols": [{"literal":"r"}, {"literal":"g"}, {"literal":"b"}, {"literal":"a"}], "postprocess": function joiner(d) {return d.join('');}},
-    {"name": "csscolor", "symbols": ["csscolor$string$3", "_", {"literal":"("}, "_", "colnum", "_", {"literal":","}, "_", "colnum", "_", {"literal":","}, "_", "colnum", "_", {"literal":","}, "_", "decimal", "_", {"literal":")"}]},
+    {"name": "csscolor", "symbols": ["csscolor$string$3", "_", {"literal":"("}, "_", "colnum", "_", {"literal":","}, "_", "colnum", "_", {"literal":","}, "_", "colnum", "_", {"literal":","}, "_", "decimal", "_", {"literal":")"}], "postprocess": ([type,ws1,par1,ws2,r,ws3,comma1,ws4,g,ws5,comma2,ws6,b,ws7,comma3,alpha,ws8,par2]) => [{"type":"rgb","r":r,"g":g,"b":b}]},
     {"name": "csscolor$string$4", "symbols": [{"literal":"h"}, {"literal":"s"}, {"literal":"l"}, {"literal":"a"}], "postprocess": function joiner(d) {return d.join('');}},
     {"name": "csscolor", "symbols": ["csscolor$string$4", "_", {"literal":"("}, "_", "colnum", "_", {"literal":","}, "_", "colnum", "_", {"literal":","}, "_", "colnum", "_", {"literal":","}, "_", "decimal", "_", {"literal":")"}]},
-    {"name": "hexdigit", "symbols": [/[a-fA-F0-9]/]},
+    {"name": "hexdigit", "symbols": [/[a-fA-F0-9]/], "postprocess": ([hex]) => hex.toString()},
     {"name": "colnum", "symbols": ["int"]},
     {"name": "colnum", "symbols": ["percentage"]}
 ]
