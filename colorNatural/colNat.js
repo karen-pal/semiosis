@@ -2,7 +2,7 @@
 // http://github.com/Hardmath123/nearley
 (function () {
 function id(x) { return x[0]; }
-var grammar = {
+ function LENGTH (d) { return d[0][0].length; } var grammar = {
     Lexer: undefined,
     ParserRules: [
     {"name": "_$ebnf$1", "symbols": []},
@@ -12,7 +12,7 @@ var grammar = {
     {"name": "__$ebnf$1", "symbols": ["__$ebnf$1", "wschar"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "__", "symbols": ["__$ebnf$1"], "postprocess": function(d) {return null;}},
     {"name": "wschar", "symbols": [/[ \t\n\v\f]/], "postprocess": id},
-    {"name": "main", "symbols": ["Saturacion"]},
+    {"name": "main", "symbols": ["Hue"], "postprocess": LENGTH},
     {"name": "Saturacion$string$1", "symbols": [{"literal":"f"}, {"literal":"u"}, {"literal":"e"}, {"literal":"r"}, {"literal":"t"}, {"literal":"e"}], "postprocess": function joiner(d) {return d.join('');}},
     {"name": "Saturacion", "symbols": ["Luz", "_", "Saturacion$string$1"]},
     {"name": "Saturacion$string$2", "symbols": [{"literal":"a"}, {"literal":"p"}, {"literal":"a"}, {"literal":"g"}, {"literal":"a"}, {"literal":"d"}, {"literal":"o"}], "postprocess": function joiner(d) {return d.join('');}},
@@ -22,7 +22,12 @@ var grammar = {
     {"name": "Luz", "symbols": ["Hue", "_", "Luz$string$1"]},
     {"name": "Luz$string$2", "symbols": [{"literal":"o"}, {"literal":"s"}, {"literal":"c"}, {"literal":"u"}, {"literal":"r"}, {"literal":"o"}], "postprocess": function joiner(d) {return d.join('');}},
     {"name": "Luz", "symbols": ["Hue", "_", "Luz$string$2"]},
-    {"name": "Luz", "symbols": ["Hue"]},
+    {"name": "Luz", "symbols": ["Hue"], "postprocess": 
+        
+        function([a, b , data]) {
+            return(a)
+            }
+        },
     {"name": "Hue$string$1", "symbols": [{"literal":"r"}, {"literal":"o"}, {"literal":"j"}, {"literal":"o"}], "postprocess": function joiner(d) {return d.join('');}},
     {"name": "Hue", "symbols": ["Hue$string$1"]},
     {"name": "Hue$string$2", "symbols": [{"literal":"a"}, {"literal":"z"}, {"literal":"u"}, {"literal":"l"}], "postprocess": function joiner(d) {return d.join('');}},
