@@ -17,17 +17,29 @@
                     lightness: 50
                 }; } %}
 
-@{% function TEST (d) { 
+@{% function ACLARAR ([d1,,d2]) { 
                 return {
-                    d: d,
-                    v: d[0][0].hue
+                    d1: d1,
+                    hue: d1[0].hue,
+                    saturation: d1[0].saturation,
+                    lightness: d1[0].lightness + 50
                 }; } %}
-main -> Hue {% TEST %}
 
-Saturacion -> Luz _ "fuerte" | Luz _ "apagado" | Luz 
-Luz -> Hue _ "claro" | Hue _ "oscuro" | Hue
+@{% function OSCURECER ([d1,,d2]) { 
+                return {
+                    d1: d1,
+                    hue: d1[0].hue,
+                    saturation: d1[0].saturation,
+                    lightness: d1[0].lightness - 50
+                }; } %}
+main -> Luz
+Luz -> CLARO | OSCURO | Hue
 Hue -> ROJO | VERDE 
 
 ROJO -> "rojo" {% ROJOFUN %}
 
 VERDE -> "verde" {% VERDEFUN %}
+
+CLARO -> Hue "claro" {% ACLARAR %}
+
+OSCURO -> Hue "oscuro" {% OSCURECER %}

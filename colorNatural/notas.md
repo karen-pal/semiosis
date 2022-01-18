@@ -11,3 +11,6 @@ main -> Saturacion
 Saturacion -> Luz "fuerte" | Luz "apagado" | Luz 
 Luz -> Hue "claro" | Hue "oscuro" | Hue
 Hue -> "rojo" | "azul" | "verde"
+
+Luz -> Hue _ CLARO | Hue _ OSCURO | Hue
+Saturacion -> Luz2 _ "fuerte" | Luz2 _ "apagado" | Luz2

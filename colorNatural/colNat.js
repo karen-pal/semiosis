@@ -16,10 +16,19 @@ function id(x) { return x[0]; }
                     saturation: 100,
                     lightness: 50
                 }; } 
- function TEST (d) { 
+ function ACLARAR ([d1,,d2]) { 
                 return {
-                    d: d,
-                    v: d[0][0].hue
+                    d1: d1,
+                    hue: d1[0].hue,
+                    saturation: d1[0].saturation,
+                    lightness: d1[0].lightness + 50
+                }; } 
+ function OSCURECER ([d1,,d2]) { 
+                return {
+                    d1: d1,
+                    hue: d1[0].hue,
+                    saturation: d1[0].saturation,
+                    lightness: d1[0].lightness - 50
                 }; } var grammar = {
     Lexer: undefined,
     ParserRules: [
@@ -30,23 +39,20 @@ function id(x) { return x[0]; }
     {"name": "__$ebnf$1", "symbols": ["__$ebnf$1", "wschar"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "__", "symbols": ["__$ebnf$1"], "postprocess": function(d) {return null;}},
     {"name": "wschar", "symbols": [/[ \t\n\v\f]/], "postprocess": id},
-    {"name": "main", "symbols": ["Hue"], "postprocess": TEST},
-    {"name": "Saturacion$string$1", "symbols": [{"literal":"f"}, {"literal":"u"}, {"literal":"e"}, {"literal":"r"}, {"literal":"t"}, {"literal":"e"}], "postprocess": function joiner(d) {return d.join('');}},
-    {"name": "Saturacion", "symbols": ["Luz", "_", "Saturacion$string$1"]},
-    {"name": "Saturacion$string$2", "symbols": [{"literal":"a"}, {"literal":"p"}, {"literal":"a"}, {"literal":"g"}, {"literal":"a"}, {"literal":"d"}, {"literal":"o"}], "postprocess": function joiner(d) {return d.join('');}},
-    {"name": "Saturacion", "symbols": ["Luz", "_", "Saturacion$string$2"]},
-    {"name": "Saturacion", "symbols": ["Luz"]},
-    {"name": "Luz$string$1", "symbols": [{"literal":"c"}, {"literal":"l"}, {"literal":"a"}, {"literal":"r"}, {"literal":"o"}], "postprocess": function joiner(d) {return d.join('');}},
-    {"name": "Luz", "symbols": ["Hue", "_", "Luz$string$1"]},
-    {"name": "Luz$string$2", "symbols": [{"literal":"o"}, {"literal":"s"}, {"literal":"c"}, {"literal":"u"}, {"literal":"r"}, {"literal":"o"}], "postprocess": function joiner(d) {return d.join('');}},
-    {"name": "Luz", "symbols": ["Hue", "_", "Luz$string$2"]},
+    {"name": "main", "symbols": ["Luz"]},
+    {"name": "Luz", "symbols": ["CLARO"]},
+    {"name": "Luz", "symbols": ["OSCURO"]},
     {"name": "Luz", "symbols": ["Hue"]},
     {"name": "Hue", "symbols": ["ROJO"]},
     {"name": "Hue", "symbols": ["VERDE"]},
     {"name": "ROJO$string$1", "symbols": [{"literal":"r"}, {"literal":"o"}, {"literal":"j"}, {"literal":"o"}], "postprocess": function joiner(d) {return d.join('');}},
     {"name": "ROJO", "symbols": ["ROJO$string$1"], "postprocess": ROJOFUN},
     {"name": "VERDE$string$1", "symbols": [{"literal":"v"}, {"literal":"e"}, {"literal":"r"}, {"literal":"d"}, {"literal":"e"}], "postprocess": function joiner(d) {return d.join('');}},
-    {"name": "VERDE", "symbols": ["VERDE$string$1"], "postprocess": VERDEFUN}
+    {"name": "VERDE", "symbols": ["VERDE$string$1"], "postprocess": VERDEFUN},
+    {"name": "CLARO$string$1", "symbols": [{"literal":"c"}, {"literal":"l"}, {"literal":"a"}, {"literal":"r"}, {"literal":"o"}], "postprocess": function joiner(d) {return d.join('');}},
+    {"name": "CLARO", "symbols": ["Hue", "CLARO$string$1"], "postprocess": ACLARAR},
+    {"name": "OSCURO$string$1", "symbols": [{"literal":"o"}, {"literal":"s"}, {"literal":"c"}, {"literal":"u"}, {"literal":"r"}, {"literal":"o"}], "postprocess": function joiner(d) {return d.join('');}},
+    {"name": "OSCURO", "symbols": ["Hue", "OSCURO$string$1"], "postprocess": OSCURECER}
 ]
   , ParserStart: "main"
 }
