@@ -17,7 +17,12 @@
   },
   "homepage": "https://github.com/karen-pal/semiosis#readme",
   "dependencies": {
+    "@tensorflow/tfjs": "^3.13.0",
+    "canvas": "^2.9.0",
     "chalk": "^4.1.2",
+    "glsl-noise": "^0.0.0",
+    "glslify": "^7.1.1",
+    "jimp": "^0.16.1",
     "nearley": "^2.20.1",
     "readline-sync": "^1.4.10"
   }
