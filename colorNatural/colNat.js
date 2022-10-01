@@ -16,6 +16,13 @@ function id(x) { return x[0]; }
                     saturation: 100,
                     lightness: 50
                 }; } 
+ function AZULFUN (d) { 
+                return {
+                    d: d,
+                    hue: 240,
+                    saturation: 100,
+                    lightness: 50
+                }; } 
  function ACLARAR ([d1,,d2]) { 
                 return {
                     d1: d1,
@@ -29,6 +36,39 @@ function id(x) { return x[0]; }
                     hue: d1[0].hue,
                     saturation: d1[0].saturation,
                     lightness: d1[0].lightness - 50
+                }; } 
+ function SATURAR ([d1,,d2]) { 
+                console.log(d1,typeof(d1[0][0].d));
+                if (typeof(d1[0][0].d[0]) === 'string'){
+                    return {
+                    d1: d1[0][0].d[0],
+                    hue: d1[0][0].hue,
+                    saturation: d1[0][0].saturation + 50,
+                    lightness: d1[0][0].lightness
+
+                    };
+                }
+                return {
+                    d1: d1,
+                    hue: d1[0].hue,
+                    saturation: d1[0].saturation + 50,
+                    lightness: d1[0].lightness
+                }; } 
+ function DESATURAR ([d1,,d2]) { 
+                if (typeof(d1[0][0].d[0]) === 'string'){
+                    return {
+                    d1: d1[0][0].d[0],
+                    hue: d1[0][0].hue,
+                    saturation: d1[0][0].saturation - 50,
+                    lightness: d1[0][0].lightness
+
+                    };
+                }
+                return {
+                    d1: d1,
+                    hue: d1[0].hue,
+                    saturation: d1[0].saturation - 50,
+                    lightness: d1[0].lightness
                 }; } var grammar = {
     Lexer: undefined,
     ParserRules: [
@@ -39,7 +79,10 @@ function id(x) { return x[0]; }
     {"name": "__$ebnf$1", "symbols": ["__$ebnf$1", "wschar"], "postprocess": function arrpush(d) {return d[0].concat([d[1]]);}},
     {"name": "__", "symbols": ["__$ebnf$1"], "postprocess": function(d) {return null;}},
     {"name": "wschar", "symbols": [/[ \t\n\v\f]/], "postprocess": id},
-    {"name": "main", "symbols": ["Luz"]},
+    {"name": "main", "symbols": ["Saturacion"]},
+    {"name": "Saturacion", "symbols": ["FUERTE"]},
+    {"name": "Saturacion", "symbols": ["APAGADO"]},
+    {"name": "Saturacion", "symbols": ["Luz"]},
     {"name": "Luz", "symbols": ["CLARO"]},
     {"name": "Luz", "symbols": ["OSCURO"]},
     {"name": "Luz", "symbols": ["Hue"]},
@@ -49,10 +92,16 @@ function id(x) { return x[0]; }
     {"name": "ROJO", "symbols": ["ROJO$string$1"], "postprocess": ROJOFUN},
     {"name": "VERDE$string$1", "symbols": [{"literal":"v"}, {"literal":"e"}, {"literal":"r"}, {"literal":"d"}, {"literal":"e"}], "postprocess": function joiner(d) {return d.join('');}},
     {"name": "VERDE", "symbols": ["VERDE$string$1"], "postprocess": VERDEFUN},
+    {"name": "AZUL$string$1", "symbols": [{"literal":"a"}, {"literal":"z"}, {"literal":"u"}, {"literal":"l"}], "postprocess": function joiner(d) {return d.join('');}},
+    {"name": "AZUL", "symbols": ["AZUL$string$1"], "postprocess": AZULFUN},
     {"name": "CLARO$string$1", "symbols": [{"literal":"c"}, {"literal":"l"}, {"literal":"a"}, {"literal":"r"}, {"literal":"o"}], "postprocess": function joiner(d) {return d.join('');}},
-    {"name": "CLARO", "symbols": ["Hue", "CLARO$string$1"], "postprocess": ACLARAR},
+    {"name": "CLARO", "symbols": ["Hue", "_", "CLARO$string$1"], "postprocess": ACLARAR},
     {"name": "OSCURO$string$1", "symbols": [{"literal":"o"}, {"literal":"s"}, {"literal":"c"}, {"literal":"u"}, {"literal":"r"}, {"literal":"o"}], "postprocess": function joiner(d) {return d.join('');}},
-    {"name": "OSCURO", "symbols": ["Hue", "OSCURO$string$1"], "postprocess": OSCURECER}
+    {"name": "OSCURO", "symbols": ["Hue", "_", "OSCURO$string$1"], "postprocess": OSCURECER},
+    {"name": "FUERTE$string$1", "symbols": [{"literal":"f"}, {"literal":"u"}, {"literal":"e"}, {"literal":"r"}, {"literal":"t"}, {"literal":"e"}], "postprocess": function joiner(d) {return d.join('');}},
+    {"name": "FUERTE", "symbols": ["Luz", "_", "FUERTE$string$1"], "postprocess": SATURAR},
+    {"name": "APAGADO$string$1", "symbols": [{"literal":"a"}, {"literal":"p"}, {"literal":"a"}, {"literal":"g"}, {"literal":"a"}, {"literal":"d"}, {"literal":"o"}], "postprocess": function joiner(d) {return d.join('');}},
+    {"name": "APAGADO", "symbols": ["Luz", "_", "APAGADO$string$1"], "postprocess": DESATURAR}
 ]
   , ParserStart: "main"
 }

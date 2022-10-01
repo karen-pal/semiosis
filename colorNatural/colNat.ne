@@ -17,6 +17,14 @@
                     lightness: 50
                 }; } %}
 
+@{% function AZULFUN (d) { 
+                return {
+                    d: d,
+                    hue: 240,
+                    saturation: 100,
+                    lightness: 50
+                }; } %}
+
 @{% function ACLARAR ([d1,,d2]) { 
                 return {
                     d1: d1,
@@ -32,14 +40,58 @@
                     saturation: d1[0].saturation,
                     lightness: d1[0].lightness - 50
                 }; } %}
-main -> Luz
+
+@{% function SATURAR ([d1,,d2]) { 
+                console.log(d1,typeof(d1[0][0].d));
+                if (typeof(d1[0][0].d[0]) === 'string'){
+                    return {
+                    d1: d1[0][0].d[0],
+                    hue: d1[0][0].hue,
+                    saturation: d1[0][0].saturation + 50,
+                    lightness: d1[0][0].lightness
+
+                    };
+                }
+                return {
+                    d1: d1,
+                    hue: d1[0].hue,
+                    saturation: d1[0].saturation + 50,
+                    lightness: d1[0].lightness
+                }; } %}
+
+@{% function DESATURAR ([d1,,d2]) { 
+                if (typeof(d1[0][0].d[0]) === 'string'){
+                    return {
+                    d1: d1[0][0].d[0],
+                    hue: d1[0][0].hue,
+                    saturation: d1[0][0].saturation - 50,
+                    lightness: d1[0][0].lightness
+
+                    };
+                }
+                return {
+                    d1: d1,
+                    hue: d1[0].hue,
+                    saturation: d1[0].saturation - 50,
+                    lightness: d1[0].lightness
+                }; } %}
+
+
+main -> Saturacion
+Saturacion -> FUERTE | APAGADO | Luz
 Luz -> CLARO | OSCURO | Hue
-Hue -> ROJO | VERDE 
+Hue -> ROJO | VERDE | AZUL
 
 ROJO -> "rojo" {% ROJOFUN %}
 
 VERDE -> "verde" {% VERDEFUN %}
 
-CLARO -> Hue "claro" {% ACLARAR %}
+AZUL -> "azul" {% AZULFUN %}
 
-OSCURO -> Hue "oscuro" {% OSCURECER %}
+CLARO -> Hue _ "claro" {% ACLARAR %}
+
+OSCURO -> Hue _ "oscuro" {% OSCURECER %}
+
+FUERTE -> Luz _ "fuerte" {% SATURAR %}
+
+APAGADO -> Luz _ "apagado" {% DESATURAR %}

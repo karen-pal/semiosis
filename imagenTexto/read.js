@@ -31,7 +31,8 @@ const loadImage = async function(path, width, height) {
   return img;//tf.tensor3d(p, [400, 300, 3]).reshape([1, 400, 300, 3])
 }
 const imageResult = async function() { 
-    let sizes = [{"w":100,"h":300},{"w":300,"h":600},{"w":10,"h":190}];
+    //let sizes = [{"w":100,"h":300},{"w":300,"h":600},{"w":10,"h":190}];
+    let sizes = [{"w":100,"h":300}];
     let chars = ["█", "▓","░","▒"];
     let chars2 = ["█"];
     for (let item of sizes) {
@@ -55,11 +56,11 @@ const imageResult = async function() {
                     }
                 }
                 counts["TOTAL"]++;
-                //let colorify = chalk.rgb(pixColor.r,pixColor.g,pixColor.b);
-                //process.stdout.write(colorify(choose(chars)));
-                //if (j=== data.bitmap.height-1){
-                //    console.log("\n");
-                //}
+                let colorify = chalk.rgb(pixColor.r,pixColor.g,pixColor.b);
+                process.stdout.write(colorify(choose(chars)));
+                if (j=== data.bitmap.height-1){
+                    console.log("\n");
+                }
                 //console.log(colorify("▓▓▓"));
                 //console.log(pixColor);
             }

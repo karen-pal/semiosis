@@ -44,6 +44,5 @@ while (true) {
     const color = readlineSync.question('Please write a : \n');
     parser = new nearley.Parser(nearley.Grammar.fromCompiled(grammar),{ keepHistory: true });
         parser.feed(color);
-        console.log(">: ", parser.results);
-        console.log(parser.results);
+        console.log(">: ", parser.results[0][0]);
 }

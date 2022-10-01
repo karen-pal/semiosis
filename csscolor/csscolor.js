@@ -108,6 +108,8 @@ var grammar = {
     {"name": "csscolor", "symbols": ["csscolor$string$3", "_", {"literal":"("}, "_", "colnum", "_", {"literal":","}, "_", "colnum", "_", {"literal":","}, "_", "colnum", "_", {"literal":","}, "_", "decimal", "_", {"literal":")"}], "postprocess": ([type,ws1,par1,ws2,r,ws3,comma1,ws4,g,ws5,comma2,ws6,b,ws7,comma3,alpha,ws8,par2]) => [{"type":"rgb","r":r,"g":g,"b":b}]},
     {"name": "csscolor$string$4", "symbols": [{"literal":"h"}, {"literal":"s"}, {"literal":"l"}, {"literal":"a"}], "postprocess": function joiner(d) {return d.join('');}},
     {"name": "csscolor", "symbols": ["csscolor$string$4", "_", {"literal":"("}, "_", "colnum", "_", {"literal":","}, "_", "colnum", "_", {"literal":","}, "_", "colnum", "_", {"literal":","}, "_", "decimal", "_", {"literal":")"}]},
+    {"name": "csscolor$string$5", "symbols": [{"literal":"d"}, {"literal":"r"}, {"literal":"a"}, {"literal":"w"}], "postprocess": function joiner(d) {return d.join('');}},
+    {"name": "csscolor", "symbols": ["csscolor$string$5"], "postprocess": ([type]) => [{"type":"draw_inst", "data":""}]},
     {"name": "hexdigit", "symbols": [/[a-fA-F0-9]/], "postprocess": ([hex]) => hex.toString()},
     {"name": "colnum", "symbols": ["int"]},
     {"name": "colnum", "symbols": ["percentage"]}
